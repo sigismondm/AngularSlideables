@@ -1,12 +1,12 @@
 angular.module('angularSlideables', [])
 .directive('slideable', function () {
     return {
-        restrict:'C',
+        restrict:'CA',
         compile: function (element, attr) {
             // wrap tag
             var contents = element.html();
             element.html('<div class="slideable_content" style="margin:0 !important; padding:0 !important" >' + contents + '</div>');
-
+           
             return function postLink(scope, element, attrs) {
                 // default properties
                 attrs.duration = (!attrs.duration) ? '1s' : attrs.duration;
@@ -27,13 +27,19 @@ angular.module('angularSlideables', [])
         restrict: 'A',
         link: function(scope, element, attrs) {
             var target, content;
-            
-            attrs.expanded = false;
-            
+
             element.bind('click', function() {
                 if (!target) target = document.querySelector(attrs.slideToggle);
-                if (!content) content = target.querySelector('.slideable_content');
+                console.log("target.expanded", target);
+
+                if(target.style.height === '0px') {
+                  attrs.expanded = false;
+                } else {
+                  attrs.expanded = true;
+                }
                 
+                if (!content) content = target.querySelector('.slideable_content');
+                console.log("Expanded == " + attrs.expanded);
                 if(!attrs.expanded) {
                     content.style.border = '1px solid rgba(0,0,0,0)';
                     var y = content.clientHeight;
@@ -42,6 +48,7 @@ angular.module('angularSlideables', [])
                 } else {
                     target.style.height = '0px';
                 }
+
                 attrs.expanded = !attrs.expanded;
             });
         }
