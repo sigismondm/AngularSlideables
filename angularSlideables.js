@@ -30,7 +30,6 @@ angular.module('angularSlideables', [])
 
             element.bind('click', function() {
                 if (!target) target = document.querySelector(attrs.slideToggle);
-                console.log("target.expanded", target);
 
                 if(target.style.height === '0px') {
                   attrs.expanded = false;
@@ -39,7 +38,7 @@ angular.module('angularSlideables', [])
                 }
                 
                 if (!content) content = target.querySelector('.slideable_content');
-                console.log("Expanded == " + attrs.expanded);
+                
                 if(!attrs.expanded) {
                     content.style.border = '1px solid rgba(0,0,0,0)';
                     var y = content.clientHeight;
