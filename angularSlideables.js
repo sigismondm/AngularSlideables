@@ -26,9 +26,9 @@ angular.module('angularSlideables', [])
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-            var target, content;
 
-            element.bind('click', function() {
+            element.bind('click', function() {    
+                var target, content;
                 if (!target && attrs.slideToggle) target = document.querySelector(attrs.slideToggle);
                 if(target) {
 
