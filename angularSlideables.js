@@ -44,7 +44,7 @@ angular.module('angularSlideables', [])
                         content.style.border = '1px solid rgba(0,0,0,0)';
                         var y = content.clientHeight;
                         content.style.border = 0;
-                        target.style.height = y + 'px';
+                        target.style.height = 'auto';
                     } else {
                         target.style.height = '0px';
                     }
